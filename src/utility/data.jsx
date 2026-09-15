@@ -160,3 +160,11 @@ export const educationList = [
       score: "CGPA: 9.02"
     }
 ];
+
+ 
+export const statNotes = [
+  { number: "3+", label: "Years Experience", rotate: -6, z: 3, translateX: "0px", translateY: "10px", color: "amber" },
+  { number: "4", label: "Projects Built", rotate: 8, z: 2, translateX: "70px", translateY: "50px", color: "sage" },
+  { number: "20+", label: "Technologies", rotate: -12, z: 1, translateX: "-50px", translateY: "60px", color: "clay" },
+];
+

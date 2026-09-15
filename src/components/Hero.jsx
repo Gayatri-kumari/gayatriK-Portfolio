@@ -3,6 +3,7 @@ import { FiLinkedin } from "react-icons/fi";
 import { FiGithub } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { MdOutlineFileDownload } from "react-icons/md";
+import StickyNotes from "./StickyNotes";
 
 
 const Hero=function(){
@@ -50,21 +51,24 @@ const Hero=function(){
                     Get in Touch
                     </a>
                     <div className="socialBtns">
-                        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/gayatri-kumari-4954b140b/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
                             <FiLinkedin   />
                         </a>
-                        <a href="https://github.com/yourusername" target="_blank" rel="noreferrer" aria-label="GitHub">
+                        <a href="https://github.com/Gayatri-kumari" target="_blank" rel="noreferrer" aria-label="GitHub">
                             <FiGithub   />
                         </a>
-                        <a href="mailto:your.email@example.com" aria-label="Email">
+                        <a href="mailto:gayatrirao2209@gmail.com" aria-label="Email">
                             <FiMail   />
                         </a>
                     </div>
                 </div>
-            </div>
             
+             
+            </div>
+             <StickyNotes/>
        
             </div>
+          
              </div>
 
  

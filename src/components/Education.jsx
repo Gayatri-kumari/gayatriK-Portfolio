@@ -5,7 +5,7 @@ import {educationList} from "../utility/data"
 
 export default function Education() {
   return (
-    <section className="educationSection">
+    <section className="educationSection" id="education">
       <h2>Education</h2>
 
       <div className="timelineContainer">

@@ -6,7 +6,7 @@ import { FaBuilding } from "react-icons/fa";
 
 export default function Experience(){
     return(
-        <section className="experienceSection">
+        <section className="experienceSection" id="experience">
             <h2 className="expHeading">Experience</h2>
             <div className="experienceCard">
                 <div className="experienceHeader">

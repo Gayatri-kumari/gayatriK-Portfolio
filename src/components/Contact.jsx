@@ -42,9 +42,9 @@ export default function Contact() {
   };
 
   return (
-    <section className="contactSection">
+    <section className="contactSection" id="contact">
       <h2>Get in Touch</h2>
-      <p className="contactIntro">Open to new opportunities — feel free to reach out.</p>
+      <p className="contactIntro">Open to new opportunities - feel free to reach out.</p>
 
       <form onSubmit={handleSubmit} className="contactForm">
         <div className="nameMail">
@@ -81,7 +81,7 @@ export default function Contact() {
           <p className="formNote success"><FiCheck /> Message sent! I'll get back to you soon.</p>
         )}
         {status === "error" && (
-          <p className="formNote error">Something went wrong — try again, or email me directly below.</p>
+          <p className="formNote error">Something went wrong - try again, or email me directly below.</p>
         )}
       </form>
 
