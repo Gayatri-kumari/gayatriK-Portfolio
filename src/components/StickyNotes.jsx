@@ -1,12 +1,14 @@
 import { statNotes } from "../utility/data";
 
+// Responsive statistics shown as sticky notes or a compact row.
 export default function StickyNotes() {
   return (
-    <div className="stickyNoteStack">
-      {statNotes.map((note, i) => (
+    <>
+      <div className="stickyNoteStack">
+        {statNotes.map((note, index) => (
         <div
           className="stickyNote"
-          key={i}
+          key={index}
           style={{
             "--rotate": `${note.rotate}deg`,
             "--tx": note.translateX,
@@ -18,15 +20,17 @@ export default function StickyNotes() {
           <span className="statNumber">{note.number}</span>
           <span className="statLabel">{note.label}</span>
         </div>
-      ))}
-      {/* <div className="statRow">
-  {statNotes.map((note, i) => (
-    <div className="statItem" key={i}>
-      <span className="statNumber">{note.number}</span>
-      <span className="statLabel">{note.label}</span>
-    </div>
-  ))}
-</div> */}
-    </div>
+        ))}
+      </div>
+
+      <div className="statRow">
+        {statNotes.map((note, index) => (
+          <div className="statItem" key={index}>
+            <span className="statNumber">{note.number}</span>
+            <span className="statLabel">{note.label}</span>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

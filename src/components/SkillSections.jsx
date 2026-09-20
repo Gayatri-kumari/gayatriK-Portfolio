@@ -1,24 +1,25 @@
-import React from 'react'
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
-const SkillSections = ({skill}) => {
-    const  {category,categoryIcon,skills}=skill  
+// Reusable category section for the skills grid.
+const SkillSections = ({ skill }) => {
+  const { category, categoryIcon, skills } = skill;
+  const [ref, isVisible] = useScrollReveal();
+
   return(
-    <div className='skillSection'>
+    <section className={`skillSection reveal-fadeUp ${isVisible ? "is-visible" : ""}`} ref={ref}>
         <h3 className='skillCategory'><span>{categoryIcon}</span>{category}</h3>
         <div className='skills'>
-            {skills.map(item=>{
-            return(
-                <div className="skillPills" key={item.name}>
-                <div className='skillItem'>{item.icon}</div>
-                <div className='skillName'>{item.name}</div>
+            {skills.map((item, index) => (
+              <div className="skillPills" style={{ transitionDelay: `${index * 0.08}s` }} key={item.name}>
+              <div className='skillItem'>{item.icon}</div>
+              <div className='skillName'>{item.name}</div>
                 </div>
-            )
-            })}
+            ))}
      
         </div>
        
-    </div>
+    </section>
   )
 }
 
-export default SkillSections
+export default SkillSections;

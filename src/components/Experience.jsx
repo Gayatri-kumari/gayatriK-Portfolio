@@ -1,19 +1,20 @@
-import { FiBriefcase,FiCalendar,FiMapPin,FiAward } from "react-icons/fi";
+import { FiBriefcase, FiCalendar, FiMapPin, FiAward } from "react-icons/fi";
 import { FaBuilding } from "react-icons/fa";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
 
+// Professional experience and key responsibilities.
+export default function Experience() {
 
-
-export default function Experience(){
-    return(
-        <section className="experienceSection" id="experience">
+    const [ref, isVisible] = useScrollReveal();
+    return (
+        <section className={`experienceSection reveal-slideLeft ${isVisible ? "is-visible" : ""}`} id="experience" ref={ref}>
             <h2 className="expHeading">Experience</h2>
-            <div className="experienceCard">
+            <div className="experienceCard" >
                 <div className="experienceHeader">
                         <div className="roleData">
                             <div className="roleName">
                                 <FiBriefcase /> Application Development Analyst <span className="badge">Full-time</span>
-                                {/* <p className="promotionNote">↳ Promoted from Associate</p> */}
                             </div>
                             <div className="companyName">
                                 <FaBuilding /> Accenture Pvt. Ltd.
@@ -60,5 +61,5 @@ export default function Experience(){
                 
             </div>
         </section>
-    )
+    );
 }

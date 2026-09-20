@@ -1,23 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lacquer&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-
+/* Theme colors */
 :root {
   --bg: #FEFCEC;
   --surface: #FFFFFF;
   --surface-alt: #F5F1DC;
   --border: #E6E0C8;
   --text-primary: #1E1B10;
-   
   --text-secondary: #6B6552;
   --accent: #C9822E;
   --accent-hover: #B06F22;
   --accent-contrast: #FEFCEC;
+    --highlight: #F5C36F;
+    --highlight-opacity: 0.58;
+    --nav-bg: rgba(254, 252, 236, 0.82);
+    --overlay: rgba(0, 0, 0, 0.57);
+    --photo-surface: #FFFFFF;
+    --photo-text: #111111;
+    --badge-bg: #3F9B57;
+    --badge-border: #FFFFFF;
+    --heading-shadow: #FFFFFF;
+    --project-border: #A69C82;
+    --badge-text: #FFFFFF;
+    --muted-border: #D2C9B2;
 
   --note-amber: #F5D9A8;
   --note-sage: #C9D9BE;
@@ -34,9 +43,23 @@
   --accent: #E8A84B;
   --accent-hover: #F2BB68;
   --accent-contrast: #17150F;
-  --note-amber: #6B5A38;
-  --note-sage: #4A5943;
-  --note-clay: #5C4438;
+    --highlight: #B77935;
+    --highlight-opacity: 0.48;
+    --nav-bg: rgba(16, 14, 10, 0.86);
+    --overlay: rgba(0, 0, 0, 0.72);
+    --photo-surface: #f2ecdc;
+    --photo-text: #1E1B10;
+    --badge-bg: #3D8050;
+    --badge-border: #C9D9BE;
+    --heading-shadow: #100E0A;
+    --project-border: #726A56;
+    --badge-text: #FEFCEC;
+    --muted-border: #514B3C;
+
+    /* Brighter muted notes keep their color and remain readable on dark pages. */
+    --note-amber: #9A7538;
+    --note-sage: #687A5D;
+    --note-clay: #8A5F53;
 }
 
 * {
@@ -52,25 +75,46 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Base document styles */
 body {
-
   background-color: var(--bg);
   color: var(--text-primary);
- 
-  
 }
 
+/* Theme-aware scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--surface-alt);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--surface-alt);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  border: 2px solid var(--surface-alt);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Navigation */
 nav {
-  @apply p-6 py-4  flex justify-between bg-[#fefcecd2] dark:bg-[#100e0adc];
+    @apply flex justify-between p-6 py-4;
+    background-color: var(--nav-bg);
   position: sticky;
   top: 0;
   z-index: 10;
- 
-  
 
   .navContainer {
     @apply flex justify-between items-center w-full;
-    
 
     .navMenu {
       @apply flex gap-4 items-center;
@@ -91,25 +135,28 @@ nav {
     .navActions {
       @apply flex gap-5 text-xl items-center;
 
-      button {
+            button {
         background: none;
         border: none;
         cursor: pointer;
         color: var(--text-primary);
-        &:hover{  
-        @apply scale-120 transition-all;
-        color: var(--accent);
+                &:hover {
+                    @apply scale-120 transition-all;
+                    color: var(--accent);
         }
       }
     }
   }
 }
-h1 {                               
+
+/* Typography */
+h1 {
   font-family: "Bricolage Grotesque", sans-serif;
-  font-weight: 800;               
+    font-weight: 800;
 }
 
-h2, h3 {                          
+h2,
+h3 {
   font-family: "Bricolage Grotesque", sans-serif;
   font-weight: 600;
 }
@@ -120,9 +167,10 @@ h2, h3 {
   color: var(--accent);
 }
 
+/* Mobile navigation modal */
 .OuterNavModal {
-  @apply fixed top-0 left-0 w-full h-full z-40 ;
-  background-color: rgba(0, 0, 0, 0.573);
+    @apply fixed top-0 left-0 z-40 h-full w-full;
+    background-color: var(--overlay);
 
   .navModal {
     @apply fixed text-xl right-0 w-[55%] h-full text-center  z-50 flex flex-col justify-center gap-10 p-10 items-center;
@@ -153,22 +201,26 @@ h2, h3 {
   }
 }
 
-
-
-/* Polariod */
+/* Hero */
 
 .hero{
     @apply flex justify-center  items-center   w-full   ;
+   
     .container{
         @apply   lg:w-[80%]    relative  w-full  flex flex-col justify-center items-center md:flex-row      
-        gap-6 lg:gap-10  p-10   pb-33  ;
+        gap-6 lg:gap-10  p-10   sm:pb-33 pb-15  ;
+        
          .hero-imageIcon{
-             
+           animation: appearFromLeft .5s ease-in-out;  
+            
+           
         .polariod{
-            @apply bg-white dark:bg-white/90 h-80 sm:h-85 w-70 sm:w-75 rounded-md py-4 px-3 relative;
+            @apply h-80 sm:h-85 w-70 sm:w-75 rounded-md py-4 px-3 relative;
+            background-color: var(--photo-surface);
             box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.3);
             transform: rotate(-3deg);
             transition: all .2s ease-in-out ;
+            
             &:hover{
                 transform: rotate(0deg);
                  
@@ -181,9 +233,11 @@ h2, h3 {
                    position: relative;
 
                 span{
-                    @apply text-lg text-black;
-                    font-family: "Permanent Marker", cursive   ;
+                    @apply text-xl;
+                    color: var(--photo-text);
+                    font-family: "Covered By Your Grace", cursive  ;
                     letter-spacing: 1px;
+                    font-weight:500;
 
                  
                 }
@@ -195,17 +249,31 @@ h2, h3 {
             }
          }
          .hero-badge{
-            @apply p-1.5 border border-dashed rounded-lg border-white bg-green-500/70 dark:bg-green-500/90 text-white absolute 
+                @apply p-1.5 border border-dashed rounded-lg absolute
             -top-5 sm:left-[-35px] left-[-30px]  ;
-            animation: badgePulse 2s ease-in-out infinite;
+                background-color: var(--badge-bg);
+                border-color: var(--badge-border);
+                color: var(--badge-text);
+            opacity: 0;
+            animation: fadeIn .4s ease-in .5s forwards , badgePulse 2s ease-in-out .9s infinite;
          }
     }
     
     .hero-content{
         @apply flex flex-col p-1   justify-center     ;
-        
+         
+        animation:appearFromRight .5s ease-in;
+
+        .hero-eyebrow,
+        .hero-dot {
+            color: var(--text-secondary);
+        }
+         
+         
         .heading{
             @apply  text-4xl md:text-5xl   text-amber-600 py-2  ;
+            /* text-shadow: 1px 0 var(--heading-shadow), 0 1px var(--text-primary),
+                -1px 0 var(--text-primary), 0 -1px var(--heading-shadow); */
             text-shadow:1px 0px white,0px 1px black,-1px 0px black,0px -1px black;
 
             transition:all .4s ease-out;
@@ -215,25 +283,36 @@ h2, h3 {
             background-position: right bottom;
             &:hover{
                     background-position: left bottom;
-                    color: white; 
-                    }    
-    
+                    color: var(--text-primary);
+            }
+
+            
         }
         .title{
-            @apply text-lg md:text-xl font-medium text-stone-700 dark:text-stone-300 mb-2;
+            @apply text-lg md:text-xl font-medium mb-2;
+            color: var(--text-secondary);
         }
         .introduction{
             @apply max-w-xl text-(--text-secondary) leading-relaxed
             mb-2;
             .highlight {
-                background: linear-gradient(90deg, transparent 0%,#fbdfb6 25%,#f9d299 50%,#fccd88 75%, #f7c06e 100%);
+                color: var(--text-primary);
+                background-image: linear-gradient(
+                    to top,
+                    color-mix(in srgb, var(--highlight) calc(var(--highlight-opacity) * 100%), transparent) 0%,
+                    color-mix(in srgb, var(--highlight) calc(var(--highlight-opacity) * 100%), transparent) 48%,
+                    transparent 48%,
+                    transparent 100%
+                );
                 background-repeat: no-repeat;
-                background-size: 100% 45%;
-                background-position: 0 90%;
-                padding: 0 2px;
-                }
-             
-        
+                background-size: 100% 100%;
+                background-position: 0 0;
+                border-radius: 0.2em;
+                box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+                padding: 0 0.12em;
+            }
+
         }
         .heroContentBtns{
             @apply flex flex-wrap items-center gap-4 pt-2;
@@ -245,7 +324,8 @@ h2, h3 {
                 }
             }
             .socialBtns{
-                @apply flex items-center justify-center gap-3 pl-4 border-l border-stone-300;
+                @apply flex items-center justify-center gap-3 pl-4 border-l;
+                border-color: var(--muted-border);
                 a{
                     @apply text-xl hover:scale-110 transition-transform ;
                    &:hover{
@@ -255,7 +335,10 @@ h2, h3 {
             }
          
             .btn-primary{
-                @apply bg-amber-600  dark:bg-transparent dark:border dark:border-amber-600 text-gray-100 p-3 rounded;
+                @apply p-3 rounded;
+                background-color: var(--accent);
+                color: var(--accent-contrast);
+                border: 1px solid var(--accent);
             }
             .btn-secondary{
                 @apply border border-amber-600 p-3 rounded;
@@ -266,6 +349,7 @@ h2, h3 {
    
 }
 
+/* Skills */
 @keyframes badgePulse {
 0%,100%{
     transform: translateY(0px);
@@ -275,6 +359,7 @@ h2, h3 {
 }
  
 }
+
 .skillTech{
     @apply p-4 lg:p-12 lg:px-18 mb-6  flex flex-col gap-4 ;
 }
@@ -286,8 +371,6 @@ h2, h3 {
 .skillTechHeading{
     @apply text-3xl md:text-4xl text-center ;
     font-weight: 800;
-    /* text-shadow: 1px 0px orange,0px 1px orange,-1px 0px orange ,0px -1px orange; */
-     
 }
  .skillSection{
      @apply border border-(--border) flex flex-col gap-4 rounded-lg p-3 mb-4;
@@ -313,7 +396,7 @@ h2, h3 {
             }
             svg {
             @apply text-lg shrink-0;
-            /* Frontend */
+            /* Technology brand colors */
             &.react-icon { color: #61DAFB; }
             &.js-icon { color: #F7DF1E; }
             &.ts-icon { color: #3178C6; }
@@ -328,18 +411,15 @@ h2, h3 {
             &.axios-icon { color: #5A29E4; }
             &.restapi-icon { color: var(--accent); } /* no brand color exists — use your accent */
 
-            /* Backend */
             &.java-icon { color: #007396; }
             &.springboot-icon { color: #6DB33F; }
             &.jdbc-icon { color: var(--accent); }   /* no brand color — use your accent */
             &.hibernate-icon { color: #59666C; }
 
-            /* Databases */
             &.mysql-icon { color: #4479A1; }
             &.oracle-icon { color: #F80000; }
             &.sql-icon { color: var(--accent); }    /* no brand color — use your accent */
 
-            /* Tools */
             &.git-icon { color: #F05032; }
             &.github-icon { color: #181717; }       /* near-black — may need a light-mode override, see note */
             &.vscode-icon { color: #007ACC; }
@@ -372,6 +452,7 @@ h2, h3 {
 }
 
 
+/* Experience */
 .experienceSection{
     @apply p-4 lg:p-12 mb-6 lg:w-[70%] flex flex-col gap-4 text-[1rem]  ;
 
@@ -429,7 +510,7 @@ h2, h3 {
 
 }
 
-
+/* Projects */
 .projectSection {
     @apply p-4  lg:p-12 mb-4  flex flex-col gap-8 items-center;
     
@@ -456,7 +537,8 @@ h2, h3 {
             }
             }
             .projectImg{
-                @apply w-[90%] md:w-[75%]   object-fill m-auto rounded-lg border border-stone-400  ;
+                @apply w-[90%] md:w-[75%] object-fill m-auto rounded-lg border;
+                border-color: var(--project-border);
                 transform:rotate(-4deg) scale(.96);
                  transition: transform 0.2s ease;
                   position: relative;
@@ -530,6 +612,8 @@ h2, h3 {
     }
 
 }
+
+/* Keep project images flat on small screens. */
 @media (max-width: 767px) {
     .projectImg {
         transform: rotate(0deg) scale(1.5);
@@ -541,6 +625,7 @@ h2, h3 {
 
 
 
+/* Education timeline */
 .educationSection{
     @apply flex flex-col  pb-6 items-center gap-10;
      h2 {  
@@ -616,6 +701,7 @@ h2, h3 {
     }
 }
 
+/* Contact */
 .contactSection {
     @apply flex flex-col items-center p-4 gap-4 lg:p-12 lg:pt-0 mb-4;
 
@@ -742,9 +828,9 @@ h2, h3 {
     }
 }
 
+/* Footer */
 footer{
     @apply flex flex-col items-center p-2  gap-4 py-6 border-t border-t-(--border) opacity-70;
-    /* var(--border) */
     h3{
         @apply text-2xl text-(--accent);
     }
@@ -766,12 +852,14 @@ footer{
 }
 
 
+/* Decorative sticky notes */
 .stickyNoteStack {
-    @apply absolute   hidden md:block  bottom-[-10px] left-20 lg:bottom-[-50px] lg:left-20;
+    @apply absolute   hidden md:block  bottom-[-10px] left-20 lg:bottom-[-80px] lg:left-20;
     width: 220px;
     height: 200px;
-    animation: badgePulse 2s ease-in-out infinite;
-    
+   opacity: 0;
+    animation:fadeIn 0.5s ease-out 0.6s forwards,
+    badgePulse 2s ease-in-out 1.1s infinite;
 }
 
 .stickyNote {
@@ -780,13 +868,13 @@ footer{
     height: 130px;
     background-color: var(--note-bg);
     color: var(--text-primary);
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+    box-shadow: -10px 5px 20px rgba(0,0,0,0.2);
     transform: translate(var(--tx), var(--ty)) rotate(var(--rotate));
     z-index: var(--z);
     transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 
     span {
-        font-family: "Permanent Marker", cursive;
+        font-family: "Covered By Your Grace", cursive;
     }
 
     &:hover {
@@ -796,23 +884,21 @@ footer{
     }
 
     .statNumber {
-        @apply text-2xl;
+        @apply text-4xl;
         color: var(--text-primary);
     }
     .statLabel {
-        @apply text-xs text-center px-2;
+        @apply text-lg text-center px-2;
         opacity: 0.8;
     }
 }
 
-/* 
-
-.statRow {
-    @apply flex md:hidden justify-around gap-2 rounded-lg p-4 mt-2;
-    background-color: var(--surface-alt);
+/* Compact statistics for small screens */
+.statRow{
+    @apply flex gap-4 p-4 rounded-lg md:hidden ;
+     background-color: var(--surface-alt);
     border: 1px solid var(--border);
-
-    .statItem {
+    .statItem{
         @apply flex flex-col items-center;
         .statNumber {
             @apply text-xl font-bold;
@@ -822,5 +908,89 @@ footer{
             @apply text-xs text-center;
             color: var(--text-secondary);
         }
+
     }
-} */
+}
+
+/* Entrance animations */
+@keyframes appear{
+    0%{
+        opacity:0;
+        scale:0.5;
+    }
+    100%{
+        opacity:1;
+        scale:1;
+    }
+}
+
+@keyframes appearFromLeft{
+    from{
+        transform:   translateX(-150px);
+        opacity:0.4
+    }
+    to{
+        transform:  translateX(0px);
+        opacity:1
+    }
+}
+@keyframes appearFromRight{
+    from{
+        transform:   translateX(150px);
+        opacity:0
+         
+    }
+    to{
+        transform:  translateX(0px);
+        opacity:1
+    }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scroll reveal states are toggled by useScrollReveal. */
+[class*="reveal-"] {
+    opacity: 0;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-fadeUp   { transform: translateY(40px); }
+.reveal-slideLeft { transform: translateX(-60px); }
+.reveal-slideRight { transform: translateX(60px); }
+.reveal-scale    { transform: scale(0.9); }
+
+.is-visible {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+
+
+.skillPills {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.is-visible .skillPills {
+    opacity: 1;
+    transform: translateY(0);
+}
+.experienceCard div {
+    opacity:0;
+    transform: scale(.6);
+    transition: opacity 0.4s ease, transform 1s ease;
+}
+
+.is-visible .experienceCard div {
+    opacity: 1;
+    transform: scale(1);
+}

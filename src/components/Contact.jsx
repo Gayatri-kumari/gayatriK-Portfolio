@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { FiMail, FiCopy, FiCheck } from "react-icons/fi";
+import { useScrollReveal } from "../hooks/useScrollReveal";
 
+// Contact form and direct email actions.
 export default function Contact() {
   const email = import.meta.env.VITE_CONTACT_EMAIL;
 
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [status, setStatus] = useState("idle");
   const [copied, setCopied] = useState(false);
 
   const handleChange = (e) => {
@@ -13,20 +15,20 @@ export default function Contact() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // stops the native redirect entirely
+    e.preventDefault();
     setStatus("sending");
 
     try {
       const res = await fetch("https://formspree.io/f/mppzglkb", {
         method: "POST",
-        headers: { "Accept": "application/json" }, // tells Formspree to respond with JSON, not redirect
+        headers: { "Accept": "application/json" },
         body: JSON.stringify(formData),
       });
 
       if (res.ok) {
         setStatus("success");
-        setFormData({ name: "", email: "", message: "" }); // clears the inputs
-        setTimeout(() => setStatus("idle"), 4000); // auto-hide the success message after a few seconds
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 4000);
       } else {
         setStatus("error");
       }
@@ -40,9 +42,10 @@ export default function Contact() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+  const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section className="contactSection" id="contact">
+    <section className={`contactSection reveal-scale ${isVisible ? "is-visible" : ""}`} id="contact" ref={ref}>
       <h2>Get in Touch</h2>
       <p className="contactIntro">Open to new opportunities - feel free to reach out.</p>
 
