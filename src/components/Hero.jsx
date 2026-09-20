@@ -3,6 +3,7 @@ import { FiLinkedin } from "react-icons/fi";
 import { FiGithub } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { MdOutlineFileDownload } from "react-icons/md";
+import resume from "../utility/resume.pdf"
 import StickyNotes from "./StickyNotes";
 
 // Introductory hero content and primary portfolio actions.
@@ -37,9 +38,9 @@ const Hero = function () {
                         </p>
 
                         <div className="heroContentBtns">
-                            <a href="/resume.pdf" download className="btn-primary flex gap-1.5 items-center">
+                            <a href={resume} target="_blank"  className="btn-primary flex gap-1.5 items-center">
                                 <MdOutlineFileDownload className="text-lg" />
-                                Download CV
+                                View CV
                             </a>
                             <a href="#contact" className="btn-secondary">Get in Touch</a>
                             <div className="socialBtns">

@@ -283,7 +283,7 @@ h3 {
             background-position: right bottom;
             &:hover{
                     background-position: left bottom;
-                    color: var(--text-primary);
+                    color:#FEFCEC ;
             }
 
             
@@ -758,7 +758,7 @@ h3 {
         }
 
         button[type="submit"] {
-            @apply p-3 px-8 rounded-lg font-medium mt-1;
+            @apply p-3 px-8 rounded-lg font-medium mt-1 cursor-pointer;
             background-color: var(--accent);
             color: var(--accent-contrast);
             transition: all 0.2s ease;
