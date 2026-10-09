@@ -31,6 +31,8 @@
   --note-amber: #F5D9A8;
   --note-sage: #C9D9BE;
   --note-clay: #E8C4B8;
+  --pattern:rgba(0,0,0,0.1);
+
 }
 
 .dark {
@@ -60,6 +62,7 @@
     --note-amber: #9A7538;
     --note-sage: #687A5D;
     --note-clay: #8A5F53;
+    --pattern:rgba(233, 194, 135, 0.1);
 }
 
 * {
@@ -77,8 +80,10 @@ html {
 
 /* Base document styles */
 body {
+    
   background-color: var(--bg);
   color: var(--text-primary);
+
 }
 
 /* Theme-aware scrollbar */
@@ -104,7 +109,9 @@ body {
 *::-webkit-scrollbar-thumb:hover {
   background-color: var(--accent-hover);
 }
-
+#root{
+  
+}
 /* Navigation */
 nav {
     @apply flex justify-between p-6 py-4;
@@ -202,10 +209,21 @@ h3 {
 }
 
 /* Hero */
-
-.hero{
-    @apply flex justify-center  items-center   w-full   ;
+ .dark .hero{
+      background-image: 
+    linear-gradient(to right, var(--pattern) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--pattern) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center;
+}
    
+.hero{
+    @apply flex justify-center  items-center   w-full  ;
+     background-image: 
+    linear-gradient(to right, var(--pattern) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--pattern) 1px, transparent 1px);
+  background-size: 40px 40px; /* Controls the spacing of the grid */
+    background-position: center;
     .container{
         @apply   lg:w-[80%]    relative  w-full  flex flex-col justify-center items-center md:flex-row      
         gap-6 lg:gap-10  p-10   sm:pb-33 pb-15  ;
@@ -261,7 +279,7 @@ h3 {
     
     .hero-content{
         @apply flex flex-col p-1   justify-center     ;
-         
+         background-color: var(--bg);
         animation:appearFromRight .5s ease-in;
 
         .hero-eyebrow,
@@ -455,11 +473,14 @@ h3 {
 /* Experience */
 .experienceSection{
     @apply p-4 lg:p-12 mb-6 lg:w-[70%] flex flex-col gap-4 text-[1rem]  ;
+  
+ 
 
     margin:auto;
     .expHeading{
         @apply text-3xl md:text-4xl text-left ;
         font-weight: 800;
+         
     }
     .experienceCard{
         @apply p-8   border rounded-lg flex flex-col  gap-4 justify-between   border-(--border) ;
@@ -513,21 +534,33 @@ h3 {
 /* Projects */
 .projectSection {
     @apply p-4  lg:p-12 mb-4  flex flex-col gap-8 items-center;
+     
+  
+  /* Creates a 1px gray dot followed by transparency */
+  background-image: radial-gradient(var(--pattern) 1px, transparent 1px); 
+  background-size: 8px 8px;  
+  background-position: center;
+
+  
     
+ 
     h2 {  
         @apply text-3xl md:text-4xl text-left;
         font-weight: 800;
     }
     .projectContainer {
         @apply grid grid-cols-1 md:grid-cols-2 gap-8 w-[90%] lg:w-[80%];
+        
         .project{
-            @apply flex flex-col gap-1 relative;
+            @apply flex flex-col gap-1 relative  ;
+            
             /* transition: transform 0.2s ease; */
             transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
             &:hover{
                 transform:translateY(-10px);
                 .projectImg {
                     transform: rotate(0deg) scale(1.03);
+                     
 
                 }
                 .projectCard {
@@ -537,15 +570,17 @@ h3 {
             }
             }
             .projectImg{
-                @apply w-[90%] md:w-[75%] object-fill m-auto rounded-lg border;
+                @apply w-[90%] md:w-[80%] object-cover m-auto rounded-lg   border ;
                 border-color: var(--project-border);
                 transform:rotate(-4deg) scale(.96);
-                 transition: transform 0.2s ease;
+                 transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
                   position: relative;
-                  
+                 
                 z-index: 2;
                 img{
-                    @apply rounded-lg;
+                    @apply rounded-lg w-full h-full object-cover;
+                  
+                
                     
                 }
             }
@@ -994,3 +1029,8 @@ footer{
     opacity: 1;
     transform: scale(1);
 }
+
+
+
+
+
