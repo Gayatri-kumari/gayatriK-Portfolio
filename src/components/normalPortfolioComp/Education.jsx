@@ -1,6 +1,6 @@
 import { FaGraduationCap } from "react-icons/fa";
-import { educationList } from "../utility/data";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { educationList } from "../../utility/data";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 // Education timeline with a responsive connector.
 export default function Education() {
@@ -9,7 +9,7 @@ export default function Education() {
     <section className="educationSection" id="education">
       <h2>Education</h2>
 
-      <div className={`timelineContainer reveal-slideRight ${isVisible ? "is-visible" : ""}`} ref={ref}>
+      <div className={`timelineContainer reveal-scale md:reveal-slideRight ${isVisible ? "is-visible" : ""}`} ref={ref}>
         {educationList.map((edu, i) => (
           <div className="timelineItem" key={i}>
             <div className="timelineMarker">

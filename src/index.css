@@ -83,6 +83,7 @@ body {
     
   background-color: var(--bg);
   color: var(--text-primary);
+  padding-bottom:45px;
 
 }
 
@@ -537,7 +538,7 @@ h3 {
      
   
   /* Creates a 1px gray dot followed by transparency */
-  background-image: radial-gradient(var(--pattern) 1px, transparent 1px); 
+  background-image: radial-gradient(var(--pattern) 2px, transparent 1px); 
   background-size: 8px 8px;  
   background-position: center;
 
@@ -740,6 +741,9 @@ h3 {
 .contactSection {
     @apply flex flex-col items-center p-4 gap-4 lg:p-12 lg:pt-0 mb-4;
 
+
+
+    
     h2 {
         @apply text-3xl md:text-4xl text-left;
         font-weight: 800;
@@ -753,6 +757,8 @@ h3 {
     form {
         @apply flex flex-col gap-3 w-[90%] md:w-[60%] items-center p-2;
 
+        
+        
         .nameMail {
             @apply flex flex-col sm:flex-row gap-2 w-full;
 
@@ -879,7 +885,7 @@ footer{
         }
     }
     p{
-        @apply text-sm;
+        @apply text-xs md:text-sm;
         span{
             @apply text-(--accent);
         }
@@ -1030,7 +1036,79 @@ footer{
     transform: scale(1);
 }
 
+.mode-toggle {
+    @apply fixed   z-50 left-1/2 bottom-0 transform -translate-x-1/2;
+    bottom: calc(16px + env(safe-area-inset-bottom)); 
+    /* clears the iPhone home bar */
+     
+    .mode-toggle-btn {
+        @apply   px-6 py-3  font-medium rounded-full  
+         text-sm    border  border-(--accent)  text-(--accent) cursor-pointer bg-(--surface-alt)   ;
+        font-family: "Courier New", monospace; 
+        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(4px); /* older Safari */
+        transition: all 0.25s ease-in-out;
+       
+         &:hover {
+            @apply bg-(--accent) text-(--accent-contrast) opacity-100 ;
+            transform: translateY(-6px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        
+    }
+
+}
 
 
 
 
+.mode-toggle-btn span {
+    animation: blinkCursor 1s step-end infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@media (min-width:768px)
+{
+    .mode-toggle {
+    @apply fixed  bottom-1/2 left-0 z-50 transform translate-x-0  ;
+    .mode-toggle-btn {
+        @apply   px-6 py-3  font-medium rounded-none  
+         text-sm text-(--badge-text)  border border-(--accent) cursor-pointer  ;
+        font-family: "Courier New", monospace; 
+        box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+        clip-path: polygon(0% 0%, 100% 0%, 95% 50%, 100% 100%, 0% 100%);
+        background-color: color-mix(in srgb, var(--accent) 85%, transparent);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(4px); /* older Safari */
+        transform:translateX(-12px);
+        transition: all 0.25s ease-in-out;
+       
+         &:hover {
+            @apply bg-(--accent) opacity-100 ;
+            
+            transform: translateX(0px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        &:active {
+            transform: translateX(0);
+        }
+
+        span {
+            display: inline-block;
+        }
+    }
+
+}
+}
+ 

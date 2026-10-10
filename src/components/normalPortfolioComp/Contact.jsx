@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FiMail, FiCopy, FiCheck } from "react-icons/fi";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 // Contact form and direct email actions.
 export default function Contact() {

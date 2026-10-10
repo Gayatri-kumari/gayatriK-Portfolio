@@ -1,4 +1,4 @@
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 // Reusable category section for the skills grid.
 const SkillSections = ({ skill }) => {

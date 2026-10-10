@@ -1,6 +1,6 @@
 import { FiBriefcase, FiCalendar, FiMapPin, FiAward } from "react-icons/fi";
 import { FaBuilding } from "react-icons/fa";
-import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 
 // Professional experience and key responsibilities.

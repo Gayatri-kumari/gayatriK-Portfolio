@@ -1,24 +1,20 @@
-import NavBar from "./components/NavBar";
-import Hero from "./components/Hero";
-import Skills from "./components/Skills";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
-import Education from "./components/Education";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
 
+import { useState } from "react";
+import NormalMode from "./components/NormalMode";
+import TerminalMode from "./components/TerminalMode";
 // Main portfolio page composition.
 const App = () => {
+    const [isNormalMode, setIsNormalMode] = useState(true);
     return (
         <>
-        <NavBar/>
-        <Hero/>
-        <Skills/>
-        <Experience/>
-        <Projects/>
-        <Education/>
-        <Contact/>
-        <Footer/>
+        <div className="mode-toggle">
+            
+            <button onClick={()=>setIsNormalMode(prev=>!prev)} draggable={true} className="mode-toggle-btn">
+               {isNormalMode?<p> &gt; <span>_</span> switch to terminal</p>:<p><span>X</span> exit terminal</p>} 
+            </button>
+             
+        </div>
+        {isNormalMode ? <NormalMode/>:<TerminalMode/>}
         </>
     );
 

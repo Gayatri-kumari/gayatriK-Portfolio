@@ -1,4 +1,4 @@
-import skillSet from "../utility/data";
+import skillSet from "../../utility/data";
 import SkillSections from "./SkillSections";
 
 // Skills grouped by technology area.

@@ -1,4 +1,4 @@
-import { statNotes } from "../utility/data";
+import { statNotes } from "../../utility/data";
 
 // Responsive statistics shown as sticky notes or a compact row.
 export default function StickyNotes() {

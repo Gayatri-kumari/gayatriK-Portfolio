@@ -3,7 +3,7 @@ import { FiLinkedin } from "react-icons/fi";
 import { FiGithub } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { MdOutlineFileDownload } from "react-icons/md";
-import resume from "../utility/resume.pdf"
+import resume from "../../utility/resume.pdf"
 import StickyNotes from "./StickyNotes";
 
 // Introductory hero content and primary portfolio actions.

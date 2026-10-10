@@ -1,5 +1,5 @@
-import { useScrollReveal } from "../hooks/useScrollReveal";
-import { project } from "../utility/data"
+import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { project } from "../../utility/data"
 
 // Project cards with live and source links.
 const Projects = () => {
